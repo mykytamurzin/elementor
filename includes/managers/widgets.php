@@ -91,6 +91,7 @@ class Widgets_Manager {
 			'menu-anchor',
 			'sidebar',
 			'read-more',
+			'paywall',
 		];
 
 		$this->_widget_types = [];
