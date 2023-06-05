@@ -196,10 +196,11 @@ class Widget_Paywall extends Widget_Base {
 	 */
 	private function check_is_protected() {
 		$post_id = get_queried_object_id();
-		$is_protected_cookie = $_COOKIE[ self::PAYWALL_COOKIE_PREFIX . $post_id ];
-		$is_payment_confirmed = $_GET['checkout_session_id']; // phpcs:ignore -- nonce validation is not require here.
+		$cookie_name = self::PAYWALL_COOKIE_PREFIX . $post_id;
+		$is_protected_cookie = ! empty( $_COOKIE[ $cookie_name ] ) ? $_COOKIE[ $cookie_name ] : false;
+		$is_payment_confirmed = ! empty( $_GET[ 'checkout_session_id' ] ) ? $_GET[ 'checkout_session_id' ] : false; // phpcs:ignore -- nonce validation is not require here.
 
-		return ! ( ! empty( $is_payment_confirmed ) || ! empty( $is_protected_cookie ) );
+		return ! ( ! empty( $is_payment_confirmed ) || $is_protected_cookie );
 	}
 }
 
