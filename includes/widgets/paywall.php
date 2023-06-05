@@ -176,7 +176,7 @@ class Widget_Paywall extends Widget_Base {
 			<div class="elementor-widget-paywall">
 				<div class="paywall-text-container">
 					<?php if ( $is_protected ) : ?>
-						<div class="paywall-text"></div>
+						<div class="paywall-text-blur"></div>
 					<?php endif; ?>
 
 					<?php echo wp_kses_post( $text ); ?>
