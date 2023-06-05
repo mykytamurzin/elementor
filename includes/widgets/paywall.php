@@ -16,6 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Widget_Paywall extends Widget_Base {
 
 	/**
+	 * @var string
+	 */
+	const PAYWALL_COOKIE_PREFIX = 'elementor_paywall_';
+
+	/**
 	 * Get widget name.
 	 *
 	 * Retrieve Paywall widget name.
@@ -121,15 +126,26 @@ class Widget_Paywall extends Widget_Base {
 		);
 
 		$this->add_control(
-			'paywall_price',
+			'paywall_payment_link',
 			[
-				'label' => esc_html__( 'Price', 'elementor' ),
-				'type' => Controls_Manager::NUMBER,
-				'placeholder' => esc_html__( 'Type your text here', 'elementor' ),
-				'min' => 5,
-				'max' => 100,
-				'step' => 1,
-				'default' => 10,
+				'label' => esc_html__( 'Stripe Link', 'elementor' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => esc_html__( 'https://buy.stripe.com/', 'elementor' ),
+				'options' => [ 'url', 'nofollow' ],
+				'default' => [
+					'url' => '',
+					'nofollow' => true,
+				],
+				'label_block' => true,
+			]
+		);
+		$this->add_control(
+			'paywall_link_label',
+			[
+				'label' => esc_html__( 'Stripe Link Label', 'elementor' ),
+				'type' => Controls_Manager::TEXT,
+				'placeholder' => esc_html__( 'Read this story for 20$', 'elementor' ),
+				'default' => '',
 			]
 		);
 
@@ -150,20 +166,40 @@ class Widget_Paywall extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		$text = $settings['paywall_text'];
-		$price = $settings['paywall_price'];
+		$link = $settings['paywall_payment_link'];
+		$link_label = $settings['paywall_link_label'];
+
+		$is_protected = $this->check_is_protected();
 
 		if ( ! empty( $text ) ) :
 			?>
 			<div class="elementor-widget-paywall">
 				<div class="paywall-text-container">
-					<div class="paywall-text"></div>
+					<?php if ( $is_protected ) : ?>
+						<div class="paywall-text"></div>
+					<?php endif; ?>
+
 					<?php echo wp_kses_post( $text ); ?>
 				</div>
-				<button>Read this story for <?php echo esc_html( $price ); ?>$</button>
+				<?php if ( $is_protected && ! empty( $link['url'] ) && ! empty( $link_label ) ) : ?>
+					<a href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link_label ); ?></a>
+				<?php endif; ?>
 			</div>
 			<?php
 		endif;
 	}
 
+	/**
+	 * Validate if user has payment confirmation or specific cookie
+	 *
+	 * @return bool
+	 */
+	private function check_is_protected() {
+		$post_id = get_queried_object_id();
+		$is_protected_cookie = $_COOKIE[ self::PAYWALL_COOKIE_PREFIX . $post_id ];
+		$is_payment_confirmed = $_GET['checkout_session_id']; // phpcs:ignore -- nonce validation is not require here.
+
+		return ! ( ! empty( $is_payment_confirmed ) || ! empty( $is_protected_cookie ) );
+	}
 }
 
