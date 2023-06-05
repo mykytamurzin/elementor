@@ -182,7 +182,7 @@ class Widget_Paywall extends Widget_Base {
 					<?php echo wp_kses_post( $text ); ?>
 				</div>
 				<?php if ( $is_protected && ! empty( $link['url'] ) && ! empty( $link_label ) ) : ?>
-					<a href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link_label ); ?></a>
+					<a href="<?php echo esc_url( $link['url'] ); ?>" class="paywall-buy-link"><?php echo esc_html( $link_label ); ?></a>
 				<?php endif; ?>
 			</div>
 			<?php
