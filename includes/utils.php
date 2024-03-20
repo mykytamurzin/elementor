@@ -506,6 +506,10 @@ class Utils {
 				$attribute_values = implode( ' ', $attribute_values );
 			}
 
+			if ( 'id' === $attribute_key ) {
+				$attribute_values = wp_kses( $attribute_values, 'post' );
+			}
+
 			$rendered_attributes[] = sprintf( '%1$s="%2$s"', $attribute_key, esc_attr( $attribute_values ) );
 		}
 
