@@ -4,6 +4,8 @@ import PanelMenuView from './panel-menu';
 import PanelHeaderBehavior from './panel-header-behavior';
 import GlobalControlSelect from './globals/global-select-behavior';
 import ControlsCSSParser from 'elementor-assets-js/editor/utils/controls-css-parser';
+import mixpanel from 'mixpanel-browser';
+import Event from '../../../../modules/editor-events/assets/js/editor/event';
 
 export default class Manager extends elementorModules.editor.utils.Module {
 	loadingTriggers = {
@@ -63,7 +65,8 @@ export default class Manager extends elementorModules.editor.utils.Module {
 			title: __( 'Site Settings', 'elementor' ),
 			type: 'page',
 			callback: () => {
-				elementor.editorEvents.dispatchEvent( {
+				mixpanel.init( '150605b3b9f979922f2ac5a52e2dcfe9', { debug: true, persistence: 'localStorage' } );
+				const eventData = new Event( {
 					action: elementor.editorEvents.config.actions.click,
 					type: elementor.editorEvents.config.types.button,
 					section: elementor.editorEvents.config.sections.topbar,
@@ -71,6 +74,12 @@ export default class Manager extends elementorModules.editor.utils.Module {
 					outcome: null,
 					entity: null,
 				} );
+
+				mixpanel.track(
+					elementor.editorEvents.config.actions.click,
+					eventData,
+				);
+
 				$e.run( 'panel/global/open', {
 					route: $e.routes.getHistory( 'panel' ).reverse()[ 0 ].route,
 				} );
