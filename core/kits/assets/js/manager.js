@@ -65,7 +65,6 @@ export default class Manager extends elementorModules.editor.utils.Module {
 			title: __( 'Site Settings', 'elementor' ),
 			type: 'page',
 			callback: () => {
-				mixpanel.init( '150605b3b9f979922f2ac5a52e2dcfe9', { debug: true, persistence: 'localStorage' } );
 				const eventData = new Event( {
 					action: elementor.editorEvents.config.actions.click,
 					type: elementor.editorEvents.config.types.button,

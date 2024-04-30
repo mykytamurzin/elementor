@@ -1,4 +1,6 @@
 import MenuPageView from 'elementor-panel/pages/menu/base';
+import Event from '../../../../../../../../modules/editor-events/assets/js/editor/event';
+import mixpanel from 'mixpanel-browser';
 
 export default class PanelMenu extends MenuPageView {
 	initialize() {
@@ -62,7 +64,23 @@ PanelMenu.addAdminMenu = () => {
 				icon: 'eicon-user-preferences',
 				title: __( 'User Preferences', 'elementor' ),
 				type: 'page',
-				callback: () => $e.route( 'panel/editor-preferences' ),
+				callback: () => {
+					const eventData = new Event( {
+						action: elementor.editorEvents.config.actions.click,
+						type: elementor.editorEvents.config.types.button,
+						section: elementor.editorEvents.config.sections.topbar,
+						element_name: elementor.editorEvents.config.elementNames.userPreferences,
+						outcome: null,
+						entity: null,
+					} );
+
+					mixpanel.track(
+						elementor.editorEvents.config.actions.click,
+						eventData,
+					);
+
+					$e.route( 'panel/editor-preferences' );
+				},
 			},
 		],
 	}, { at: 0 } );

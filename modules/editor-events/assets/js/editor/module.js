@@ -1,6 +1,7 @@
 import EventsStorage from './events-storage';
 import eventsConfig from './events-config';
 import Event from './event';
+import mixpanel from 'mixpanel-browser';
 
 export default class extends elementorModules.Module {
 	onInit() {
@@ -10,6 +11,7 @@ export default class extends elementorModules.Module {
 			return;
 		}
 
+		mixpanel.init( '150605b3b9f979922f2ac5a52e2dcfe9', { debug: true, persistence: 'localStorage' } );
 		window.addEventListener( 'beforeunload', this.sendEvents() );
 	}
 

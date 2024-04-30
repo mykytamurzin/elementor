@@ -9,6 +9,7 @@ const eventsConfig = {
 
 	elementNames: {
 		siteSettings: 'site_settings',
+		userPreferences: 'user_preferences',
 	},
 
 	types: {
