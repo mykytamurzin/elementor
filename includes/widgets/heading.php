@@ -94,6 +94,14 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 		return false;
 	}
 
+	protected function has_widget_container(): bool {
+		return false;
+	}
+
+	protected function has_widget_wrapper(): bool {
+		return false;
+	}
+
 	/**
 	 * Remove data attributes from the html.
 	 *
@@ -276,7 +284,7 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-heading-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-heading-title' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -288,7 +296,7 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'selector' => '{{WRAPPER}}.elementor-heading-title',
 			]
 		);
 
@@ -296,7 +304,7 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 			Group_Control_Text_Stroke::get_type(),
 			[
 				'name' => 'text_stroke',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'selector' => '{{WRAPPER}}.elementor-heading-title',
 			]
 		);
 
@@ -304,7 +312,7 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'selector' => '{{WRAPPER}}.elementor-heading-title',
 			]
 		);
 
@@ -329,7 +337,7 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 					'luminosity' => esc_html__( 'Luminosity', 'elementor' ),
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-heading-title' => 'mix-blend-mode: {{VALUE}}',
+					'{{WRAPPER}}.elementor-heading-title' => 'mix-blend-mode: {{VALUE}}',
 				],
 			]
 		);
@@ -337,27 +345,19 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Render heading widget output on the frontend.
-	 *
-	 * Written in PHP and used to generate the final HTML.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 */
-	protected function render() {
+	protected function render_optimised() {
 		$settings = $this->get_settings_for_display();
 
 		if ( '' === $settings['title'] ) {
 			return;
 		}
 
-		$this->add_render_attribute( 'title', 'class', 'elementor-heading-title' );
+		$this->add_render_attribute( '_wrapper', 'class', 'elementor-heading-title' );
 
 		if ( ! empty( $settings['size'] ) ) {
-			$this->add_render_attribute( 'title', 'class', 'elementor-size-' . $settings['size'] );
+			$this->add_render_attribute( '_wrapper', 'class', 'elementor-size-' . $settings['size'] );
 		} else {
-			$this->add_render_attribute( 'title', 'class', 'elementor-size-default' );
+			$this->add_render_attribute( '_wrapper', 'class', 'elementor-size-default' );
 		}
 
 		$this->add_inline_editing_attributes( 'title' );
@@ -370,44 +370,9 @@ class Widget_Heading extends Widget_Base implements Sanitizable {
 			$title = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'url' ), $title );
 		}
 
-		$title_html = sprintf( '<%1$s %2$s>%3$s</%1$s>', Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'title' ), $title );
+		$title_html = sprintf( '<%1$s %2$s>%3$s</%1$s>', Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( '_wrapper' ), $title );
 
 		// PHPCS - the variable $title_html holds safe data.
 		echo $title_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
-
-	/**
-	 * Render heading widget output in the editor.
-	 *
-	 * Written as a Backbone JavaScript template and used to generate the live preview.
-	 *
-	 * @since 2.9.0
-	 * @access protected
-	 */
-	protected function content_template() {
-		?>
-		<#
-		let title = elementor.helpers.sanitize( settings.title, { ALLOW_DATA_ATTR: false } );
-
-		if ( '' !== settings.link.url ) {
-			title = '<a href="' + _.escape( settings.link.url ) + '">' + title + '</a>';
-		}
-
-		view.addRenderAttribute( 'title', 'class', [ 'elementor-heading-title' ] );
-
-		if ( '' !== settings.size ) {
-			view.addRenderAttribute( 'title', 'class', [ 'elementor-size-' + settings.size ] );
-		} else {
-			view.addRenderAttribute( 'title', 'class', [ 'elementor-size-default' ] );
-		}
-
-		view.addInlineEditingAttributes( 'title' );
-
-		var headerSizeTag = elementor.helpers.validateHTMLTag( settings.header_size ),
-			title_html = '<' + headerSizeTag  + ' ' + view.getRenderAttributeString( 'title' ) + '>' + title + '</' + headerSizeTag + '>';
-
-		print( title_html );
-		#>
-		<?php
 	}
 }
