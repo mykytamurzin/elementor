@@ -701,7 +701,7 @@ class Widget_Image extends Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function render() {
+	protected function render_optimised() {
 		$settings = $this->get_settings_for_display();
 
 		if ( empty( $settings['image']['url'] ) ) {
@@ -867,5 +867,13 @@ class Widget_Image extends Widget_Base {
 		return [
 			'url' => $settings['image']['url'],
 		];
+	}
+
+	protected function has_widget_container(): bool {
+		return false;
+	}
+
+	protected function has_widget_wrapper(): bool {
+		return false;
 	}
 }
