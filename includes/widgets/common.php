@@ -194,7 +194,7 @@ class Widget_Common extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'selectors' => [
-					'{{WRAPPER}} > .elementor-widget-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -206,7 +206,7 @@ class Widget_Common extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'selectors' => [
-					'{{WRAPPER}} > .elementor-widget-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -691,7 +691,7 @@ class Widget_Common extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => '_background',
-				'selector' => '{{WRAPPER}} > .elementor-widget-container',
+				'selector' => '{{WRAPPER}}',
 			]
 		);
 
@@ -727,7 +727,7 @@ class Widget_Common extends Widget_Base {
 				'render_type' => 'ui',
 				'separator' => 'before',
 				'selectors' => [
-					'{{WRAPPER}} > .elementor-widget-container' => 'transition: background {{SIZE}}s',
+					'{{WRAPPER}}' => 'transition: background {{SIZE}}s',
 				],
 			]
 		);
@@ -766,7 +766,7 @@ class Widget_Common extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => '_border',
-				'selector' => '{{WRAPPER}} > .elementor-widget-container',
+				'selector' => '{{WRAPPER}}',
 			]
 		);
 
@@ -777,7 +777,7 @@ class Widget_Common extends Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
-					'{{WRAPPER}} > .elementor-widget-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -786,7 +786,7 @@ class Widget_Common extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => '_box_shadow',
-				'selector' => '{{WRAPPER}} > .elementor-widget-container',
+				'selector' => '{{WRAPPER}}',
 			]
 		);
 
