@@ -156,7 +156,7 @@ trait Button_Trait {
 					'right' => is_rtl() ? 'row' : 'row-reverse',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button-content-wrapper' => 'flex-direction: {{VALUE}};',
+					'{{WRAPPER}}.elementor-button-content-wrapper' => 'flex-direction: {{VALUE}};',
 				],
 				'condition' => array_merge(
 					$args['section_condition'],
@@ -186,7 +186,7 @@ trait Button_Trait {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button .elementor-button-content-wrapper' => 'gap: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-button .elementor-button-content-wrapper' => 'gap: {{SIZE}}{{UNIT}};',
 				],
 				'condition' => array_merge(
 					$args['section_condition'],
@@ -301,7 +301,7 @@ trait Button_Trait {
 				],
 				'default' => $args['content_alignment_default'],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button .elementor-button-content-wrapper' => 'justify-content: {{VALUE}};',
+					'{{WRAPPER}}.elementor-button .elementor-button-content-wrapper' => 'justify-content: {{VALUE}};',
 				],
 				'condition' => array_merge( $args['section_condition'], [ 'align' => 'justify' ] ),
 			]
@@ -314,7 +314,7 @@ trait Button_Trait {
 				'global' => [
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				],
-				'selector' => '{{WRAPPER}} .elementor-button',
+				'selector' => '{{WRAPPER}}.elementor-button',
 				'condition' => $args['section_condition'],
 			]
 		);
@@ -323,7 +323,7 @@ trait Button_Trait {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'text_shadow',
-				'selector' => '{{WRAPPER}} .elementor-button',
+				'selector' => '{{WRAPPER}}.elementor-button',
 				'condition' => $args['section_condition'],
 			]
 		);
@@ -347,7 +347,7 @@ trait Button_Trait {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button' => 'fill: {{VALUE}}; color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-button' => 'fill: {{VALUE}}; color: {{VALUE}};',
 				],
 				'condition' => $args['section_condition'],
 			]
@@ -359,7 +359,7 @@ trait Button_Trait {
 				'name' => 'background',
 				'types' => [ 'classic', 'gradient' ],
 				'exclude' => [ 'image' ],
-				'selector' => '{{WRAPPER}} .elementor-button',
+				'selector' => '{{WRAPPER}}.elementor-button',
 				'fields_options' => [
 					'background' => [
 						'default' => 'classic',
@@ -390,8 +390,8 @@ trait Button_Trait {
 				'label' => esc_html__( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-button:hover svg, {{WRAPPER}} .elementor-button:focus svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}}.elementor-button:hover, {{WRAPPER}}.elementor-button:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-button:hover svg, {{WRAPPER}}.elementor-button:focus svg' => 'fill: {{VALUE}};',
 				],
 				'condition' => $args['section_condition'],
 			]
@@ -403,7 +403,7 @@ trait Button_Trait {
 				'name' => 'button_background_hover',
 				'types' => [ 'classic', 'gradient' ],
 				'exclude' => [ 'image' ],
-				'selector' => '{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus',
+				'selector' => '{{WRAPPER}}.elementor-button:hover, {{WRAPPER}}.elementor-button:focus',
 				'fields_options' => [
 					'background' => [
 						'default' => 'classic',
@@ -422,7 +422,7 @@ trait Button_Trait {
 					'border_border!' => '',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}}.elementor-button:hover, {{WRAPPER}}.elementor-button:focus' => 'border-color: {{VALUE}};',
 				],
 				'condition' => $args['section_condition'],
 			]
@@ -438,7 +438,7 @@ trait Button_Trait {
 					'unit' => 's',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button' => 'transition-duration: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-button' => 'transition-duration: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -460,7 +460,7 @@ trait Button_Trait {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'border',
-				'selector' => '{{WRAPPER}} .elementor-button',
+				'selector' => '{{WRAPPER}}.elementor-button',
 				'separator' => 'before',
 				'condition' => $args['section_condition'],
 			]
@@ -473,7 +473,7 @@ trait Button_Trait {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition' => $args['section_condition'],
 			]
@@ -483,7 +483,7 @@ trait Button_Trait {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'button_box_shadow',
-				'selector' => '{{WRAPPER}} .elementor-button',
+				'selector' => '{{WRAPPER}}.elementor-button',
 				'condition' => $args['section_condition'],
 			]
 		);
@@ -495,7 +495,7 @@ trait Button_Trait {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}.elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'separator' => 'before',
 				'condition' => $args['section_condition'],
@@ -524,7 +524,7 @@ trait Button_Trait {
 			return;
 		}
 
-		$instance->add_render_attribute( 'wrapper', 'class', 'elementor-button-wrapper' );
+		$instance->add_render_attribute( '_wrapper', 'class', 'elementor-button-wrapper' );
 
 		$instance->add_render_attribute( 'button', 'class', 'elementor-button' );
 
@@ -549,7 +549,7 @@ trait Button_Trait {
 			$instance->add_render_attribute( 'button', 'class', 'elementor-animation-' . $settings['hover_animation'] );
 		}
 		?>
-		<div <?php $instance->print_render_attribute_string( 'wrapper' ); ?>>
+		<div <?php $instance->print_render_attribute_string( '_wrapper' ); ?>>
 			<a <?php $instance->print_render_attribute_string( 'button' ); ?>>
 				<?php $this->render_text( $instance ); ?>
 			</a>
@@ -572,7 +572,7 @@ trait Button_Trait {
 			return;
 		}
 
-		view.addRenderAttribute( 'wrapper', 'class', 'elementor-button-wrapper' );
+		view.addRenderAttribute( '_wrapper', 'class', 'elementor-button-wrapper' );
 
 		view.addRenderAttribute( 'button', 'class', 'elementor-button' );
 
@@ -601,7 +601,7 @@ trait Button_Trait {
 		var iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, { 'aria-hidden': true }, 'i' , 'object' ),
 		migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
 		#>
-		<div {{{ view.getRenderAttributeString( 'wrapper' ) }}}>
+		<div {{{ view.getRenderAttributeString( '_wrapper' ) }}}>
 			<a {{{ view.getRenderAttributeString( 'button' ) }}}>
 				<span class="elementor-button-content-wrapper">
 					<# if ( settings.icon || settings.selected_icon ) { #>

@@ -128,6 +128,14 @@ class Widget_Button extends Widget_Base {
 		$this->end_controls_section();
 	}
 
+	protected function has_widget_container(): bool {
+		return false;
+	}
+
+	protected function has_widget_wrapper(): bool {
+		return false;
+	}
+
 	/**
 	 * Render button widget output on the frontend.
 	 *
@@ -136,7 +144,8 @@ class Widget_Button extends Widget_Base {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function render() {
+	protected function render_optimised() {
+//		$this->render_button_new();
 		$this->render_button();
 	}
 }
