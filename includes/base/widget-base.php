@@ -1252,4 +1252,11 @@ abstract class Widget_Base extends Element_Base {
 
 		return self::$widgets_css_data_manager;
 	}
+
+	protected function render() {
+		if ( ! $this->has_widget_wrapper()  ) {
+			$this->add_render_attributes();
+			$this->render_optimised();
+		}
+	}
 }
