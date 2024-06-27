@@ -422,13 +422,13 @@ abstract class Widget_Base extends Element_Base {
 	 * @param string $template_content Template content.
 	 */
 	protected function print_template_content( $template_content ) {
-		?>
+		if ( $this->has_widget_container() ) : ?>
 		<div class="elementor-widget-container">
-			<?php
+		<?php endif;
 			echo $template_content; // XSS ok.
-			?>
+		 if ( $this->has_widget_container() ) : ?>
 		</div>
-		<?php
+		<?php endif;
 	}
 
 	/**
@@ -640,9 +640,9 @@ abstract class Widget_Base extends Element_Base {
 		if ( empty( $widget_content ) ) {
 			return;
 		}
-		?>
+		if ( $this->has_widget_container() ) : ?>
 		<div class="elementor-widget-container">
-			<?php
+		<?php endif;
 			if ( $this->is_widget_first_render( $this->get_group_name() ) ) {
 				$this->register_runtime_widget( $this->get_group_name() );
 			}
@@ -664,9 +664,9 @@ abstract class Widget_Base extends Element_Base {
 			$widget_content = apply_filters( 'elementor/widget/render_content', $widget_content, $this );
 
 			echo $widget_content; // XSS ok.
-			?>
+		if ( $this->has_widget_container() ) : ?>
 		</div>
-		<?php
+		<?php endif;
 	}
 
 	protected function is_widget_first_render( $widget_name ) {
@@ -708,9 +708,9 @@ abstract class Widget_Base extends Element_Base {
 	 * @access public
 	 */
 	public function before_render() {
-		?>
+		if ( $this->has_widget_wrapper() ) : ?>
 		<div <?php $this->print_render_attribute_string( '_wrapper' ); ?>>
-		<?php
+		<?php endif;
 	}
 
 	/**
@@ -722,9 +722,9 @@ abstract class Widget_Base extends Element_Base {
 	 * @access public
 	 */
 	public function after_render() {
-		?>
+		if ( $this->has_widget_wrapper() ) : ?>
 		</div>
-		<?php
+		<?php endif;
 	}
 
 	/**

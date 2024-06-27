@@ -299,6 +299,14 @@ abstract class Element_Base extends Controls_Stack {
 		return true;
 	}
 
+	protected function has_widget_container(): bool {
+		return true;
+	}
+
+	protected function has_widget_wrapper(): bool {
+		return true;
+	}
+
 	/**
 	 * Get child elements.
 	 *
