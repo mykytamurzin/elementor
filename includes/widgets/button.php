@@ -145,7 +145,6 @@ class Widget_Button extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render_optimised() {
-//		$this->render_button_new();
 		$this->render_button();
 	}
 }
