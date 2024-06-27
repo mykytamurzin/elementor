@@ -708,6 +708,8 @@ class Widget_Image extends Widget_Base {
 			return;
 		}
 
+		var_dump($settings);
+
 		$has_caption = $this->has_caption( $settings );
 
 		$link = $this->get_link_url( $settings );
@@ -725,6 +727,7 @@ class Widget_Image extends Widget_Base {
 				$this->add_lightbox_data_attributes( 'link', $settings['image']['id'], $settings['open_lightbox'] );
 			}
 		} ?>
+		<div <?php $this->print_render_attribute_string( '_wrapper' ); ?>>
 			<?php if ( $has_caption ) : ?>
 				<figure class="wp-caption">
 			<?php endif; ?>
@@ -743,6 +746,7 @@ class Widget_Image extends Widget_Base {
 			<?php if ( $has_caption ) : ?>
 				</figure>
 			<?php endif; ?>
+		</div>
 		<?php
 	}
 
